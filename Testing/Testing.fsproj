@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{438117c7-eb1c-41c3-aa30-e244f27a6b34}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Testing</RootNamespace>
+    <AssemblyName>Energon.Testing</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <Name>Testing</Name>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <Tailcalls>false</Tailcalls>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <DocumentationFile>bin\Debug\Testing.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <Tailcalls>true</Tailcalls>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>3</WarningLevel>
+    <DocumentationFile>bin\Release\Testing.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')" />
+  <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" Condition="(!Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')) And (Exists('$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets'))" />
+  <Import Project="$(MSBuildExtensionsPath32)\FSharp\1.0\Microsoft.FSharp.Targets" Condition="(!Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')) And (!Exists('$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets')) And (Exists('$(MSBuildExtensionsPath32)\FSharp\1.0\Microsoft.FSharp.Targets'))" />
+  <ItemGroup>
+    <Compile Include="File1.fs" />
+    <None Include="CorrMatrix.fsx" />
+    <None Include="Script.fsx" />
+    <None Include="Analysis.fsx" />
+    <None Include="linux.fsx" />
+    <None Include="windows.fsx" />
+    <None Include="virtualmachines.fsx" />
+    <None Include="test.fsx" />
+    <None Include="trash.fsx" />
+    <None Include="SPEC FP 2006.fsx" />
+    <None Include="SPEC INT 2006.fsx" />
+    <None Include="packages.config" />
+    <None Include="Samples\MathNet.Numerics.FSharp\Vectors.fsx" />
+    <None Include="Samples\MathNet.Numerics.FSharp\RandomAndDistributions.fsx" />
+    <None Include="Samples\MathNet.Numerics.FSharp\MCMC.fsx" />
+    <None Include="Samples\MathNet.Numerics.FSharp\Matrices.fsx" />
+    <None Include="Samples\MathNet.Numerics.FSharp\LinearRegression.fsx" />
+    <None Include="Samples\MathNet.Numerics.FSharp\Histogram.fsx" />
+    <None Include="Samples\MathNet.Numerics.FSharp\Apply.fsx" />
+    <None Include="SPECCPU.fsx" />
+    <None Include="CPUSPEC_refactored.fsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Extech\Extech.fsproj">
+      <Name>Extech</Name>
+      <Project>{cae59e8e-d0a1-46a2-8e6d-f2cc880a97a1}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlCompactDb\Measurement\SQLCE.csproj">
+      <Name>SQLCE</Name>
+      <Project>{7675a39a-3b2c-45d6-a4e6-2f5f07b0877e}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Storage\Storage.fsproj">
+      <Name>Storage</Name>
+      <Project>{ba39be75-a968-4765-a8a9-cd00721b30eb}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>..\packages\MathNet.Numerics.2.6.2\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics.FSharp">
+      <HintPath>..\packages\MathNet.Numerics.FSharp.2.6.0\lib\net40\MathNet.Numerics.FSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics.IO">
+      <HintPath>..\packages\MathNet.Numerics.2.6.2\lib\net40\MathNet.Numerics.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="FSharp.Core" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <ProjectReference Include="..\Measuring\Measuring.fsproj">
+      <Name>Measuring</Name>
+      <Project>{a4fd1437-9d0e-45ac-a073-d2a444d23a1a}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Phidgets\Phidgets.fsproj">
+      <Name>Phidgets</Name>
+      <Project>{04873604-574d-4bfb-b12a-e231d536b60e}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	     Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

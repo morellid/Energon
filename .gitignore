@@ -1,0 +1,11 @@
+*.suo
+*/bin/
+*/obj/
+bin/
+obj/
+Backup/
+Debug/
+packages/
+*.DS_Store
+*.obj
+_UpgradeReport_Files/
