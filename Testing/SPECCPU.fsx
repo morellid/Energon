@@ -992,8 +992,11 @@ let printBatchOfRMSEAsynch (basisT:basisType) samplesize =
                         let runprog p = 
                             if (!stop) then raise (Exception("ABORT"))
                             let name = names.[p]
-                            let (averages), res, basisVector, values_model, values_test, n, _ = runTest false basisT size basis p
-                            let _,_,_,errors = averages
+                            let runOne (_) =
+                                let (averages), res, basisVector, values_model, values_test, n, _ = runTest false basisT size basis p
+                                let _,_,_,errors = averages
+                                errors
+                            let errors = Array.init (samplesize) runOne |> Array.concat
                             let sum = errors |> Array.sumBy (fun v -> v*v)
                             let rmsd = sqrt(sum / float(Array.length errors) )
                             let sb2 = new System.Text.StringBuilder()
@@ -1042,9 +1045,9 @@ stop := true
 
 names
 
-let programsError = [| [| 0.0; 0.01; 0.11 |]; [|0.11; 0.25; 0.51 |] |]
+let programsError = [| [| 0.0; 0.01; 0.11 |]; [|0.11; -0.25; 0.51 |] |]
 let percBetween a b =
-    programsError |> Array.map (fun vec -> let count =  vec |> Array.filter (fun v -> a<=v && v<b) |> Array.length in float(count)/float(vec |> Array.length) )
+    programsError |> Array.map (fun vec -> let count =  vec |> Array.map (fun v -> Math.Abs(v) ) |> Array.filter (fun v -> a<=v && v<b) |> Array.length in float(count)/float(vec |> Array.length) )
 let percBetween000_005 = percBetween 0.0 0.05
 let percBetween005_010 = percBetween 0.05 0.1 
 let percBetween010_020 = percBetween 0.1 0.2
